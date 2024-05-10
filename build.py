@@ -74,7 +74,7 @@ TRITON_VERSION_MAP = {
         "24.04",  # upstream container
         "1.17.3",  # ORT
         "2023.3.0",  # ORT OpenVINO
-        "2023.3.0",  # Standalone OpenVINO
+        "2024.1.0",  # Standalone OpenVINO
         "3.2.6",  # DCGM version
         "0.4.0.post1",  # vLLM version
     )
@@ -1550,6 +1550,7 @@ def create_docker_build_script(script_name, container_install_dir, container_ci_
             runargs += ["-v", "\\\\.\pipe\docker_engine:\\\\.\pipe\docker_engine"]
         else:
             runargs += ["-v", "/var/run/docker.sock:/var/run/docker.sock"]
+            runargs += ["-v", "${HOME}/.docker/config.json:/root/.docker/config.json"]
 
         runargs += ["tritonserver_buildbase"]
 
